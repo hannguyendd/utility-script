@@ -6,50 +6,41 @@ brew update
 echo
 
 # === Upgrade all installed packages ===
-echo "========== Upgrading Warp =========="
-brew upgrade warp
-echo
+echo "========== Upgrading Homebrew packages =========="
 
-echo "========== Upgrading Angular Cli =========="
-brew upgrade angular-cli
-echo
+# Define arrays for normal and cask packages
+brew_packages=(
+    "warp"
+    "angular-cli"
+    "git"
+    "nuget"
+    "mongosh"
+    "python@3.12"
+    "pyenv"
+)
 
-echo "========== Upgrading Git =========="
-brew upgrade git
-echo
+brew_casks=(
+    "iterm2"
+    "ollama"
+    "ngrok"
+    "dbeaver-community"
+)
 
-echo "========== Upgrading Nuget =========="
-brew upgrade nuget
-echo
+# Upgrade normal packages
+for package in "${brew_packages[@]}"; do
+    echo "Upgrading $package..."
+    brew upgrade "$package"
+    echo
+done
 
-echo "========== Upgrading mongosh =========="
-brew upgrade mongosh
-echo
+# Upgrade cask packages
+for cask in "${brew_casks[@]}"; do
+    echo "Upgrading $cask..."
+    brew upgrade --cask "$cask"
+    echo
+done
 
-echo "========== Upgrading Python =========="
-brew upgrade python@3.12
-echo
-
-echo "========== Upgrading Pyenv =========="
-brew upgrade pyenv
-echo
-
-# === Upgrade all cask packages ===
-
-echo "========== Upgrading Iterm2 =========="
-brew upgrade --cask iterm2
-echo
-
-echo "========== Upgrading Ollama =========="
-brew upgrade --cask ollama
-echo
-
-echo "========== Upgrading Ngrok =========="
-brew upgrade --cask ngrok
-echo
-
-echo "========== Upgrading DBeaver =========="
-brew upgrade --cask dbeaver-community
+echo "========== Homebrew packages upgrade complete =========="
 echo
 
 # === Cleanup ===
