@@ -17,6 +17,7 @@ brew_packages=(
     "mongosh"
     "python@3.12"
     "pyenv"
+    "uv"
 )
 
 brew_casks=(
